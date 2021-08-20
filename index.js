@@ -4,7 +4,9 @@ const {
   getEnableStakingParams,
   createNewTokenParams,
   getTransferParams,
+  getUnStakeParams,
   getIssueParams,
+  getStakeParams,
   getBalance,
 } = require('./contracts/tokensContract');
 
@@ -43,14 +45,14 @@ const broadcastCustomJSON = async ({
 //     name: 'flowmaster',
 //     key: activeKey,
 //   };
-//   const json = getTransferParams();
+//   const json = getUnStakeParams();
 //   const yo = await broadcastCustomJSON({ account, json });
 //   console.log('yo');
 // })();
 
-// (async () => {
-//   const url = 'https://enginetestnet.ryamer.com/contracts';
-//   const account = { name: 'flowmaster' };
-//   const { data: { result = [] } } = await getBalance(url, account);
-//   console.log('yo');
-// })();
+(async () => {
+  const url = 'https://enginetestnet.ryamer.com/contracts';
+  const account = { name: 'flowmaster' };
+  const { data: { result = [] } } = await getBalance(url, account);
+  console.log('yo');
+})();

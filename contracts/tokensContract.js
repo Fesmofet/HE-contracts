@@ -22,7 +22,7 @@ exports.getIssueParams = () => {
     contractPayload: {
       symbol: 'FES',
       to: 'flowmaster',
-      quantity: '1',
+      quantity: '10',
     },
   }];
   return JSON.stringify(issueData);
@@ -54,6 +54,45 @@ exports.getEnableStakingParams = () => {
   return JSON.stringify(stackingData);
 };
 
+exports.getEnableStakingParams = () => {
+  const stackingData = [{
+    contractName: 'tokens',
+    contractAction: 'enableStaking',
+    contractPayload: {
+      symbol: 'FES',
+      unstakingCooldown: 1, // 1 days to cooldown
+      numberTransactions: 4, // 4 transaction / day
+    },
+  }];
+  return JSON.stringify(stackingData);
+};
+
+exports.getStakeParams = () => {
+  const stackingData = [{
+    contractName: 'tokens',
+    contractAction: 'stake',
+    contractPayload: {
+      to: 'fesmofet',
+      symbol: 'FES',
+      quantity: '3.5',
+    },
+  }];
+  return JSON.stringify(stackingData);
+};
+
+exports.getUnStakeParams = () => {
+  const stackingData = [{
+    contractName: 'tokens',
+    contractAction: 'unstake',
+    contractPayload: {
+      symbol: 'FES',
+      quantity: '2',
+    },
+  }];
+  return JSON.stringify(stackingData);
+};
+
+/// /////////////////////////////////////////////////////////////////////////////////////////
 /**
   start of get tables tokens contract
  */
