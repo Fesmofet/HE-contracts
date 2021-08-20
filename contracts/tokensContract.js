@@ -68,7 +68,6 @@ exports.getEnableStakingParams = () => {
   return JSON.stringify(stackingData);
 };
 
-
 exports.getStakeParams = () => {
   const stackingData = [{
     contractName: 'tokens',
@@ -153,3 +152,29 @@ exports.getTransactionInfo = async ({
     return { error };
   }
 };
+
+const engineEverything = async ({
+  hostUrl = 'https://enginetestnet.ryamer.com/contracts',
+  contract,
+  table,
+  query,
+}) => {
+  try {
+    const instance = axios.create();
+    const resp = await instance.post(
+      hostUrl,
+      {
+        jsonrpc: '2.0',
+        method: 'find',
+        params: { contract, table, query },
+        id: 'ssc-testnet-hive',
+      },
+    );
+    return resp;
+  } catch (error) {
+    return { error };
+  }
+};
+
+exports.tokenHolders = engineEverything({ contract: 'tokens', table: 'balances', query: { symbol: 'FES' } });
+exports.tokenMetrix = engineEverything({ contract: 'market', table: 'metrics', query: { symbol: 'FES'} });

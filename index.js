@@ -11,6 +11,8 @@ const {
   getIssueParams,
   getStakeParams,
   getBalance,
+  tokenMetrix,
+  tokenHolders,
 } = require('./contracts/tokensContract');
 
 const {
@@ -64,7 +66,9 @@ const broadcastCustomJSON = async ({
   const account1 = { name: 'flowmaster' };
   const account2 = { name: 'fesmofet' };
   const account3 = { name: 'wiv01' };
-  const { data: { result = [] } } = await getBalance(url, account);
+  // const { data: { result = [] } } = await getBalance(url, account);
+  const holders = await tokenHolders;
+  const metrix = await tokenMetrix;
   console.log('yo');
 })();
 
@@ -72,4 +76,3 @@ const broadcastCustomJSON = async ({
 //   const yo = await getTransactionInfo({ id: 'c700215d4b61586ab2813ce1a8a5163c079a448a' });
 //   console.log('yo');
 // })();
-
