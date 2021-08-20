@@ -20,9 +20,9 @@ exports.getIssueParams = () => {
     contractName: 'tokens',
     contractAction: 'issue',
     contractPayload: {
-      symbol: 'FES',
+      symbol: 'FEST',
       to: 'flowmaster',
-      quantity: '10',
+      quantity: '23',
     },
   }];
   return JSON.stringify(issueData);
@@ -41,18 +41,19 @@ exports.getTransferParams = () => {
   return JSON.stringify(transferData);
 };
 
-exports.getEnableStakingParams = () => {
-  const stackingData = [{
+exports.getTransferOwnershipParams = () => {
+  const ownershipData = [{
     contractName: 'tokens',
-    contractAction: 'enableStaking',
+    contractAction: 'transferOwnership',
     contractPayload: {
-      symbol: 'FES',
-      unstakingCooldown: 1, // 1 days to cooldown
-      numberTransactions: 4, // 4 transaction / day
+      symbol: 'FEST',
+      to: 'fesmofet',
     },
   }];
-  return JSON.stringify(stackingData);
+  return JSON.stringify(ownershipData);
 };
+
+// ###############################################################################################
 
 exports.getEnableStakingParams = () => {
   const stackingData = [{
@@ -66,15 +67,16 @@ exports.getEnableStakingParams = () => {
   }];
   return JSON.stringify(stackingData);
 };
+
 
 exports.getStakeParams = () => {
   const stackingData = [{
     contractName: 'tokens',
     contractAction: 'stake',
     contractPayload: {
-      to: 'fesmofet',
+      to: 'wiv01',
       symbol: 'FES',
-      quantity: '3.5',
+      quantity: '1',
     },
   }];
   return JSON.stringify(stackingData);
@@ -90,6 +92,20 @@ exports.getUnStakeParams = () => {
     },
   }];
   return JSON.stringify(stackingData);
+};
+
+/// /////////////////////////////////////////////////////////////////////////////////////
+
+exports.getEnableDelegationParams = () => {
+  const enableDelegationData = [{
+    contractName: 'tokens',
+    contractAction: 'enableDelegation',
+    contractPayload: {
+      symbol: 'FES',
+      undelegationCooldown: 1, // 1 day to cooldown
+    },
+  }];
+  return JSON.stringify(enableDelegationData);
 };
 
 /// /////////////////////////////////////////////////////////////////////////////////////////
@@ -108,6 +124,27 @@ exports.getBalance = async (
         jsonrpc: '2.0',
         method: 'find',
         params: { contract: 'tokens', table: 'balances', query: { account: account.name } },
+        id: 'ssc-testnet-hive',
+      },
+    );
+    return resp;
+  } catch (error) {
+    return { error };
+  }
+};
+
+exports.getTransactionInfo = async ({
+  hostUrl = 'https://enginetestnet.ryamer.com/blockchain',
+  id = '',
+}) => {
+  try {
+    const instance = axios.create();
+    const resp = await instance.post(
+      hostUrl,
+      {
+        jsonrpc: '2.0',
+        method: 'getTransactionInfo',
+        params: { txid: id },
         id: 'ssc-testnet-hive',
       },
     );

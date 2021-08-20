@@ -1,14 +1,22 @@
 const { Client, PrivateKey } = require('@hiveio/dhive');
 const axios = require('axios');
 const {
+  getTransferOwnershipParams,
+  getEnableDelegationParams,
   getEnableStakingParams,
   createNewTokenParams,
   getTransferParams,
+  getTransactionInfo,
   getUnStakeParams,
   getIssueParams,
   getStakeParams,
   getBalance,
 } = require('./contracts/tokensContract');
+
+const {
+  createMiningPoolParams,
+  setActiveMiningParams,
+} = require('./contracts/miningContract');
 
 // ssc-testnet-hive chain id
 
@@ -45,14 +53,23 @@ const broadcastCustomJSON = async ({
 //     name: 'flowmaster',
 //     key: activeKey,
 //   };
-//   const json = getUnStakeParams();
+//   const json = getStakeParams();
+//   // const json = getTransferOwnershipParams();
 //   const yo = await broadcastCustomJSON({ account, json });
 //   console.log('yo');
 // })();
 
 (async () => {
   const url = 'https://enginetestnet.ryamer.com/contracts';
-  const account = { name: 'flowmaster' };
+  const account1 = { name: 'flowmaster' };
+  const account2 = { name: 'fesmofet' };
+  const account3 = { name: 'wiv01' };
   const { data: { result = [] } } = await getBalance(url, account);
   console.log('yo');
 })();
+
+// (async () => {
+//   const yo = await getTransactionInfo({ id: 'c700215d4b61586ab2813ce1a8a5163c079a448a' });
+//   console.log('yo');
+// })();
+
