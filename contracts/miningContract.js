@@ -28,7 +28,7 @@ exports.setActiveMiningParams = () => {
       contractAction: 'setActive',
       contractPayload: {
         id: 'FES:FES',
-        active: true,
+        active: false,
       },
     },
   ];

@@ -177,4 +177,9 @@ const engineEverything = async ({
 };
 
 exports.tokenHolders = engineEverything({ contract: 'tokens', table: 'balances', query: { symbol: 'FES' } });
-exports.tokenMetrix = engineEverything({ contract: 'market', table: 'metrics', query: { symbol: 'FES'} });
+exports.tokenMetrix = engineEverything({ contract: 'market', table: 'metrics', query: { symbol: 'FES' } });
+/**
+ * circulatingSupply - amount circulating
+ *
+ */
+exports.tokenSupply = engineEverything({ contract: 'tokens', table: 'tokens', query: { symbol: 'FES' } });

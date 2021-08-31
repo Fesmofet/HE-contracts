@@ -13,12 +13,15 @@ const {
   getBalance,
   tokenMetrix,
   tokenHolders,
+  tokenSupply,
 } = require('./contracts/tokensContract');
 
 const {
   createMiningPoolParams,
   setActiveMiningParams,
 } = require('./contracts/miningContract');
+
+const { marketSellParams } = require('./contracts/marketContract');
 
 // ssc-testnet-hive chain id
 
@@ -50,27 +53,28 @@ const broadcastCustomJSON = async ({
   }
 };
 
-// (async () => {
-//   const account = {
-//     name: 'flowmaster',
-//     key: activeKey,
-//   };
-//   const json = getStakeParams();
-//   // const json = getTransferOwnershipParams();
-//   const yo = await broadcastCustomJSON({ account, json });
-//   console.log('yo');
-// })();
-
 (async () => {
-  const url = 'https://enginetestnet.ryamer.com/contracts';
-  const account1 = { name: 'flowmaster' };
-  const account2 = { name: 'fesmofet' };
-  const account3 = { name: 'wiv01' };
-  // const { data: { result = [] } } = await getBalance(url, account);
-  const holders = await tokenHolders;
-  const metrix = await tokenMetrix;
+  const account = {
+    name: 'flowmaster',
+    key: activeKey,
+  };
+  const json = setActiveMiningParams();
+  // const json = getTransferOwnershipParams();
+  const yo = await broadcastCustomJSON({ account, json });
   console.log('yo');
 })();
+
+// (async () => {
+//   const url = 'https://enginetestnet.ryamer.com/contracts';
+//   const account1 = { name: 'flowmaster' };
+//   const account2 = { name: 'fesmofet' };
+//   const account3 = { name: 'wiv01' };
+//   // const { data: { result = [] } } = await getBalance(url, account);
+//   const holders = await tokenHolders;
+//   const metrix = await tokenMetrix;
+//   const aboutToken = await tokenSupply;
+//   console.log('yo');
+// })();
 
 // (async () => {
 //   const yo = await getTransactionInfo({ id: 'c700215d4b61586ab2813ce1a8a5163c079a448a' });
