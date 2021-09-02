@@ -14,6 +14,7 @@ const {
   tokenMetrix,
   tokenHolders,
   tokenSupply,
+  holderFunds,
 } = require('./contracts/tokensContract');
 
 const {
@@ -22,8 +23,13 @@ const {
 } = require('./contracts/miningContract');
 
 const { marketSellParams } = require('./contracts/marketContract');
+const {
+  distributionContractPollParams,
+  distributionContractFixedParams,
+} = require('./contracts/distributionContract');
 
 // ssc-testnet-hive chain id
+// ssc-mainnet-hive
 
 const client = new Client('https://api.hive.blog', { failoverThreshold: 0, timeout: 10 * 1000 });
 const activeKey = process.env.ACTIVE_KEY;
@@ -53,16 +59,16 @@ const broadcastCustomJSON = async ({
   }
 };
 
-(async () => {
-  const account = {
-    name: 'flowmaster',
-    key: activeKey,
-  };
-  const json = setActiveMiningParams();
-  // const json = getTransferOwnershipParams();
-  const yo = await broadcastCustomJSON({ account, json });
-  console.log('yo');
-})();
+// (async () => {
+//   const account = {
+//     name: 'flowmaster',
+//     key: activeKey,
+//   };
+//   const json = distributionContractFixedParams();
+//   // const json = getTransferOwnershipParams();
+//   const yo = await broadcastCustomJSON({ account, json });
+//   console.log('yo');
+// })();
 
 // (async () => {
 //   const url = 'https://enginetestnet.ryamer.com/contracts';
@@ -73,10 +79,11 @@ const broadcastCustomJSON = async ({
 //   const holders = await tokenHolders;
 //   const metrix = await tokenMetrix;
 //   const aboutToken = await tokenSupply;
+//   const { data: { result: myFunds } } = await holderFunds;
 //   console.log('yo');
 // })();
 
 // (async () => {
-//   const yo = await getTransactionInfo({ id: 'c700215d4b61586ab2813ce1a8a5163c079a448a' });
+//   const { data } = await getTransactionInfo({ id: '7a6a84fdf476d96e60eabfca47411e2a453e722b' });
 //   console.log('yo');
 // })();

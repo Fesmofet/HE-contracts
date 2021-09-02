@@ -69,15 +69,35 @@ exports.getEnableStakingParams = () => {
 };
 
 exports.getStakeParams = () => {
-  const stackingData = [{
-    contractName: 'tokens',
-    contractAction: 'stake',
-    contractPayload: {
-      to: 'wiv01',
-      symbol: 'FES',
-      quantity: '1',
+  const stackingData = [
+    {
+      contractName: 'tokens',
+      contractAction: 'stake',
+      contractPayload: {
+        to: 'daine-cherry',
+        symbol: 'FES',
+        quantity: '10',
+      },
     },
-  }];
+    {
+      contractName: 'tokens',
+      contractAction: 'stake',
+      contractPayload: {
+        to: 'daine-cherry2',
+        symbol: 'FES',
+        quantity: '10',
+      },
+    },
+    {
+      contractName: 'tokens',
+      contractAction: 'stake',
+      contractPayload: {
+        to: 'daine-cherry3',
+        symbol: 'FES',
+        quantity: '10',
+      },
+    },
+  ];
   return JSON.stringify(stackingData);
 };
 
@@ -183,3 +203,5 @@ exports.tokenMetrix = engineEverything({ contract: 'market', table: 'metrics', q
  *
  */
 exports.tokenSupply = engineEverything({ contract: 'tokens', table: 'tokens', query: { symbol: 'FES' } });
+
+exports.holderFunds = engineEverything({ contract: 'tokens', table: 'balances', query: { account: 'flowmaster' } });
