@@ -15,6 +15,7 @@ const {
   tokenHolders,
   tokenSupply,
   holderFunds,
+  comentsContractsQuery,
 } = require('./contracts/tokensContract');
 
 const {
@@ -31,6 +32,9 @@ const {
   createFundParams,
   activateFundContract,
 } = require('./contracts/tokenFundContract');
+const {
+  createCommentsContractParams,
+} = require('./contracts/comentsContract');
 
 // ssc-testnet-hive chain id
 // ssc-mainnet-hive
@@ -73,20 +77,21 @@ const broadcastCustomJSON = async ({
 //   console.log('yo');
 // })();
 
-// (async () => {
-//   const url = 'https://enginetestnet.ryamer.com/contracts';
-//   const account1 = { name: 'flowmaster' };
-//   const account2 = { name: 'fesmofet' };
-//   const account3 = { name: 'wiv01' };
-//   // const { data: { result = [] } } = await getBalance(url, account);
-//   const holders = await tokenHolders;
-//   const metrix = await tokenMetrix;
-//   const aboutToken = await tokenSupply;
-//   const { data: { result: myFunds } } = await holderFunds;
-//   console.log('yo');
-// })();
+(async () => {
+  const url = 'https://enginetestnet.ryamer.com/contracts';
+  const account1 = { name: 'flowmaster' };
+  const account2 = { name: 'fesmofet' };
+  const account3 = { name: 'wiv01' };
+  // const { data: { result = [] } } = await getBalance(url, account);
+  const holders = await tokenHolders;
+  const metrix = await tokenMetrix;
+  const { data: { result: aboutToken } } = await tokenSupply;
+  const { data: { result: myFunds } } = await holderFunds;
+  const { data: { result: comentsContracts } } = await comentsContractsQuery;
+  console.log('yo');
+})();
 
 // (async () => {
-//   const { data } = await getTransactionInfo({ id: '1cad60c529bf60228061e5ba599e1fbf0d88f204' });
+//   const { data: { result } } = await getTransactionInfo({ id: 'fbd1abcc41406ac9f90a88255805d5eb39f1c1dd' });
 //   console.log('yo');
 // })();

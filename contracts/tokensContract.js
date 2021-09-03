@@ -14,7 +14,7 @@ exports.createNewTokenParams = () => {
   }];
   return JSON.stringify(tokenSettings);
 };
-//cae249d3c35dc0a665895357210bf8e1d284d3ba
+// cae249d3c35dc0a665895357210bf8e1d284d3ba
 exports.getIssueParams = () => {
   const issueData = [{
     contractName: 'tokens',
@@ -75,8 +75,8 @@ exports.getStakeParams = () => {
       contractAction: 'stake',
       contractPayload: {
         to: 'flowmaster',
-        symbol: 'FES',
-        quantity: '998.5',
+        symbol: 'BEE',
+        quantity: '1',
       },
     },
   ];
@@ -170,6 +170,7 @@ const engineEverything = async ({
         method: 'find',
         params: { contract, table, query },
         id: 'ssc-testnet-hive',
+        // id: 'ssc-mainnet-hive',
       },
     );
     return resp;
@@ -187,3 +188,10 @@ exports.tokenMetrix = engineEverything({ contract: 'market', table: 'metrics', q
 exports.tokenSupply = engineEverything({ contract: 'tokens', table: 'tokens', query: { symbol: 'FES' } });
 
 exports.holderFunds = engineEverything({ contract: 'tokens', table: 'balances', query: { account: 'flowmaster' } });
+
+exports.comentsContractsQuery = engineEverything({
+  contract: 'comments',
+  table: 'params',
+  query: {},
+  // hostUrl: 'https://api.hive-engine.com/rpc/contracts',
+});
