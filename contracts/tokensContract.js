@@ -14,15 +14,15 @@ exports.createNewTokenParams = () => {
   }];
   return JSON.stringify(tokenSettings);
 };
-
+//cae249d3c35dc0a665895357210bf8e1d284d3ba
 exports.getIssueParams = () => {
   const issueData = [{
     contractName: 'tokens',
     contractAction: 'issue',
     contractPayload: {
-      symbol: 'FEST',
+      symbol: 'FES',
       to: 'flowmaster',
-      quantity: '23',
+      quantity: '1000',
     },
   }];
   return JSON.stringify(issueData);
@@ -74,27 +74,9 @@ exports.getStakeParams = () => {
       contractName: 'tokens',
       contractAction: 'stake',
       contractPayload: {
-        to: 'daine-cherry',
+        to: 'flowmaster',
         symbol: 'FES',
-        quantity: '10',
-      },
-    },
-    {
-      contractName: 'tokens',
-      contractAction: 'stake',
-      contractPayload: {
-        to: 'daine-cherry2',
-        symbol: 'FES',
-        quantity: '10',
-      },
-    },
-    {
-      contractName: 'tokens',
-      contractAction: 'stake',
-      contractPayload: {
-        to: 'daine-cherry3',
-        symbol: 'FES',
-        quantity: '10',
+        quantity: '998.5',
       },
     },
   ];

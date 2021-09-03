@@ -23,7 +23,7 @@ exports.distributionContractPollParams = () => {
 };
 
 // 7a6a84fdf476d96e60eabfca47411e2a453e722b
-
+// #TODO add contract name action and payload
 exports.distributionContractFixedParams = () => {
   const ditributionContract = [{
     strategy: 'pool',

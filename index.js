@@ -27,6 +27,10 @@ const {
   distributionContractPollParams,
   distributionContractFixedParams,
 } = require('./contracts/distributionContract');
+const {
+  createFundParams,
+  activateFundContract,
+} = require('./contracts/tokenFundContract');
 
 // ssc-testnet-hive chain id
 // ssc-mainnet-hive
@@ -64,8 +68,7 @@ const broadcastCustomJSON = async ({
 //     name: 'flowmaster',
 //     key: activeKey,
 //   };
-//   const json = distributionContractFixedParams();
-//   // const json = getTransferOwnershipParams();
+//   const json = getStakeParams();
 //   const yo = await broadcastCustomJSON({ account, json });
 //   console.log('yo');
 // })();
@@ -84,6 +87,6 @@ const broadcastCustomJSON = async ({
 // })();
 
 // (async () => {
-//   const { data } = await getTransactionInfo({ id: '7a6a84fdf476d96e60eabfca47411e2a453e722b' });
+//   const { data } = await getTransactionInfo({ id: '1cad60c529bf60228061e5ba599e1fbf0d88f204' });
 //   console.log('yo');
 // })();
