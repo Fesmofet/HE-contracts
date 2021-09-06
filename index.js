@@ -16,6 +16,9 @@ const {
   tokenSupply,
   holderFunds,
   comentsContractsQuery,
+  proposalsDTFQuery,
+  comentsPoolsQuery,
+  comentsPostsQuery,
 } = require('./contracts/tokensContract');
 
 const {
@@ -33,6 +36,7 @@ const {
   activateFundContract,
 } = require('./contracts/tokenFundContract');
 const {
+  activateCommentsContract,
   createCommentsContractParams,
 } = require('./contracts/comentsContract');
 
@@ -77,21 +81,25 @@ const broadcastCustomJSON = async ({
 //   console.log('yo');
 // })();
 
-(async () => {
-  const url = 'https://enginetestnet.ryamer.com/contracts';
-  const account1 = { name: 'flowmaster' };
-  const account2 = { name: 'fesmofet' };
-  const account3 = { name: 'wiv01' };
-  // const { data: { result = [] } } = await getBalance(url, account);
-  const holders = await tokenHolders;
-  const metrix = await tokenMetrix;
-  const { data: { result: aboutToken } } = await tokenSupply;
-  const { data: { result: myFunds } } = await holderFunds;
-  const { data: { result: comentsContracts } } = await comentsContractsQuery;
-  console.log('yo');
-})();
+// (async () => {
+//   const url = 'https://enginetestnet.ryamer.com/contracts';
+//   // const { data: { result = [] } } = await getBalance(url, account);
+//
+//   const { data: { result: holders } } = await tokenHolders;
+//   const { data: { result: metrix } } = await tokenMetrix;
+//   const { data: { result: aboutToken } } = await tokenSupply;
+//   const { data: { result: myFunds } } = await holderFunds;
+//   const { data: { result: comentsContracts } } = await comentsContractsQuery;
+//   const { data: { result: proposals } } = await proposalsDTFQuery;
+//   const { data: { result: commentPools } } = await comentsPoolsQuery;
+//   const { data: { result: commentPosts } } = await comentsPostsQuery;
+//   console.log('yo');
+// })();
 
 // (async () => {
-//   const { data: { result } } = await getTransactionInfo({ id: 'fbd1abcc41406ac9f90a88255805d5eb39f1c1dd' });
+//   const { data: { result } } = await getTransactionInfo({
+//     hostUrl: 'http://65.21.50.97:5000/blockchain',
+//     id: '74ce54992276dd12bff9e141a511e2663dbedf74',
+//   });
 //   console.log('yo');
 // })();

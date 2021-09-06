@@ -1,15 +1,18 @@
 const axios = require('axios');
 
+// 9c9eac146e4933f6453e186aca66142970324dbd
+
 exports.createNewTokenParams = () => {
   const tokenSettings = [{
     contractName: 'tokens',
     contractAction: 'create',
     contractPayload: {
-      symbol: 'FES',
+      // symbol: 'FES',
+      symbol: 'POINT',
       name: 'point token',
       precision: 8,
       maxSupply: '1000000000000',
-      url: 'myapp.com',
+      url: 'point.test',
     },
   }];
   return JSON.stringify(tokenSettings);
@@ -20,7 +23,7 @@ exports.getIssueParams = () => {
     contractName: 'tokens',
     contractAction: 'issue',
     contractPayload: {
-      symbol: 'FES',
+      symbol: 'POINT',
       to: 'flowmaster',
       quantity: '1000',
     },
@@ -54,14 +57,14 @@ exports.getTransferOwnershipParams = () => {
 };
 
 // ###############################################################################################
-
+// ed6e9c28606b75096b6b3b48db4e12d7bb1d2ccd
 exports.getEnableStakingParams = () => {
   const stackingData = [{
     contractName: 'tokens',
     contractAction: 'enableStaking',
     contractPayload: {
-      symbol: 'FES',
-      unstakingCooldown: 1, // 1 days to cooldown
+      symbol: 'POINT',
+      unstakingCooldown: 28, // 1 days to cooldown
       numberTransactions: 4, // 4 transaction / day
     },
   }];
@@ -75,8 +78,8 @@ exports.getStakeParams = () => {
       contractAction: 'stake',
       contractPayload: {
         to: 'flowmaster',
-        symbol: 'BEE',
-        quantity: '1',
+        symbol: 'POINT',
+        quantity: '1000',
       },
     },
   ];
@@ -102,7 +105,7 @@ exports.getEnableDelegationParams = () => {
     contractName: 'tokens',
     contractAction: 'enableDelegation',
     contractPayload: {
-      symbol: 'FES',
+      symbol: 'POINT',
       undelegationCooldown: 1, // 1 day to cooldown
     },
   }];
@@ -156,7 +159,9 @@ exports.getTransactionInfo = async ({
 };
 
 const engineEverything = async ({
-  hostUrl = 'https://enginetestnet.ryamer.com/contracts',
+  // hostUrl = 'https://enginetestnet.ryamer.com/contracts',
+  // hostUrl = 'https://enginetestnet.rishipanthee.com/contracts',
+  hostUrl = 'http://65.21.50.97:5000/contracts',
   contract,
   table,
   query,
@@ -179,13 +184,13 @@ const engineEverything = async ({
   }
 };
 
-exports.tokenHolders = engineEverything({ contract: 'tokens', table: 'balances', query: { symbol: 'FES' } });
+exports.tokenHolders = engineEverything({ contract: 'tokens', table: 'balances', query: { symbol: { $in: ['FES', 'POINT'] } } });
 exports.tokenMetrix = engineEverything({ contract: 'market', table: 'metrics', query: { symbol: 'FES' } });
 /**
  * circulatingSupply - amount circulating
  *
  */
-exports.tokenSupply = engineEverything({ contract: 'tokens', table: 'tokens', query: { symbol: 'FES' } });
+exports.tokenSupply = engineEverything({ contract: 'tokens', table: 'tokens', query: { symbol: { $in: ['FES', 'POINT'] } } });
 
 exports.holderFunds = engineEverything({ contract: 'tokens', table: 'balances', query: { account: 'flowmaster' } });
 
@@ -195,3 +200,23 @@ exports.comentsContractsQuery = engineEverything({
   query: {},
   // hostUrl: 'https://api.hive-engine.com/rpc/contracts',
 });
+
+exports.comentsPoolsQuery = engineEverything({
+  contract: 'comments',
+  table: 'rewardPools',
+  query: { _id: 8 },
+});
+exports.comentsPostsQuery = engineEverything({
+  contract: 'comments',
+  table: 'posts',
+  query: { rewardPoolId: 8 },
+});
+
+exports.proposalsDTFQuery = engineEverything({
+  contract: 'tokenfunds',
+  table: 'proposals',
+  query: { fundId: 'FES:FES' },
+});
+
+// 1000000000000
+// 21024000000
